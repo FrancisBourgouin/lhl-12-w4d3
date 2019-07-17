@@ -79,6 +79,7 @@ $(document).ready(() => {
   // const iAmAFunction = () => {}
   // const calculateAreaOfCoveragePerMeterInTheSystemOfLifeAndStuff = () => {}
 
+  // Fetching the posts when the DOM is ready
   $.ajax({
     method:"GET",
     url:"http://jsonplaceholder.typicode.com/posts"
@@ -86,12 +87,14 @@ $(document).ready(() => {
     .then(posts => renderPosts(posts, '.bunch_of_posts'))
     .fail(error => console.error(error))
 
+  // Fetching the posts when the button is double clicked
   $('#load_more').dblclick(() => {
     $.get('http://jsonplaceholder.typicode.com/posts')
       .then(posts => renderPosts(posts, '.bunch_of_posts'))
       .fail(error => console.error(error))
   })
 
+  // Fetching the posts when the end of the page is reached
   $(document).scroll(() => {
     if (areWeThereYet()) {
       $.get('http://jsonplaceholder.typicode.com/posts')
@@ -100,6 +103,8 @@ $(document).ready(() => {
     }
   })
 
+  // Fetching html content and prepending it directly in the page
+  
   $.get('/funky.html').then(response => $('body').prepend(response))
 
 })
